@@ -5,7 +5,7 @@ import fs from 'fs';
 import path from 'path';
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 // Cho phép CORS từ tất cả các nguồn
 app.use(cors());
@@ -41,6 +41,10 @@ app.get('/uploads', (req, res) => {
     const files = fs.readdirSync(uploadsDir);
     res.json(files);
 });
+
+// Update the server to include the upload route and serve static files from the uploads directory
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.listen(port, () => {
     console.log(`Server đang chạy tại http://localhost:${port}`);
