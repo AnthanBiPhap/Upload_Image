@@ -25,7 +25,8 @@ if (!fs.existsSync(uploadsDir)) {
 // Route để upload file
 app.post('/upload', upload.single('image'), (req, res) => {
     if (!req.file) {
-        return res.status(400).json({ message: 'Không có file được upload' });
+        res.status(400).json({ message: 'Không có file được upload' });
+        return;
     }
     
     res.json({
